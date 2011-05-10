@@ -114,7 +114,7 @@
 			
 			$anchor = Widget::Anchor(
 				$this->get('anchor_label'),
-				$data['value']
+				URL . $data['value']
 			);
 			
 			if ($this->get('new_window') == 'yes') {
@@ -165,7 +165,10 @@
 		public function prepareTableValue($data, XMLElement $link = null) {
 			if (empty($data)) return;
 			
-			$anchor =  Widget::Anchor($this->get('anchor_label'), $data['value']);
+			$anchor = Widget::Anchor(
+				$this->get('anchor_label'),
+				URL . $data['value']
+			);
 			if ($this->get('new_window') == 'yes') $anchor->setAttribute('target', '_blank');
 			return $anchor->generate();
 		}
@@ -209,7 +212,7 @@
 			
 			// Save:
 			$result = $this->Database->update(array(
-				'value'				=> $value
+				'value' => $value
 			), "tbl_entries_data_{$field_id}", "
 				`entry_id` = '{$entry_id}'
 			");
